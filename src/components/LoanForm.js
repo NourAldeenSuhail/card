@@ -6,7 +6,7 @@ function LoanForm() {
     name: "",
     phone: "",
     age: "",
-    salary: "",
+    salary: "", // سيتم تخزين قيمة الراتب هنا
     isEmployee: false,
   });
 
@@ -59,7 +59,7 @@ function LoanForm() {
   // التحقق من تفعيل زر الإرسال
   React.useEffect(() => {
     const { name, phone, age, salary } = formData;
-    setIsSubmitEnabled(name && phone && age && salary);
+    setIsSubmitEnabled(name && phone && age && salary); // الراتب الآن اختيار من القائمة
   }, [formData]);
 
   return (
@@ -106,15 +106,15 @@ function LoanForm() {
           />
         </label>
 
-        {/* الراتب */}
-        <label>Salary:</label>
-        <input
-          type="number"
-          name="salary"
-          value={formData.salary}
-          onChange={handleChange}
-        />
-
+        {/* الراتب (قائمة منسدلة) */}
+        <label>Monthly Salary:</label>
+        <select name="salary" value={formData.salary} onChange={handleChange}>
+          <option value="">Select an option</option>
+          <option value="less than $500">Less than $500</option>
+          <option value="$500 - $1000">$500 - $1000</option>
+          <option value="more than $1000">More than $1000</option>
+        </select>
+        <br />
         {/* زر الإرسال */}
         <button
           type="submit"
